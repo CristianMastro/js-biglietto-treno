@@ -4,15 +4,9 @@ let quantiAnniHai = prompt (`Quanti anni hai?`);
 
 //FUNZIONI CALCOLO BIGLIETTI PER FASCE D'ETA'//
 
-function sottraiPercentuale(chilometriViaggio, scontoMinorenni) {
-    return chilometriViaggio - (chilometriViaggio * scontoMinorenni) / 100; 
+function sottraiPercentuale(chilometriViaggio, sconto) {
+    return chilometriViaggio - (chilometriViaggio * sconto) / 100; 
 }
-
-function sottraiPercentualeOver(chilometriViaggio, scontoOver) {
-    return chilometriViaggio - (chilometriViaggio * scontoOver) / 100; 
-}   
-
-
 
 //CONTROLLO ETA' E CHILOMETRI//
 
@@ -24,16 +18,16 @@ if (isNaN(quantiAnniHai) || isNaN(chilometriViaggio) || Number(chilometriViaggio
 //COSTO BIGLIETTI UNDER 18//
 
 } else if (Number(quantiAnniHai)<18) {
-    const scontoMinorenni = 20;
-    let prezzoMinorenni = sottraiPercentuale((chilometriViaggio * 0.21),scontoMinorenni);
+    let sconto = 20
+    let prezzoMinorenni = sottraiPercentuale((chilometriViaggio * 0.21),sconto);
     let prezzoInEuro = `€${prezzoMinorenni.toFixed(2).replace(".",",")}`
     console.log(`Il tuo viaggio costa il 20% in meno`, prezzoInEuro);
 
 //COSTO BIGLIETTI OVER 65//
 
 } else if (Number(quantiAnniHai)>65) { 
-    const scontoOver = 40;
-    let prezzoOver = sottraiPercentualeOver((chilometriViaggio * 0.21),scontoOver);
+    let sconto = 40;
+    let prezzoOver = sottraiPercentuale((chilometriViaggio * 0.21),sconto);
     let prezzoInEuro = `€${prezzoOver.toFixed(2).replace(".",",")}`
     console.log(`Il tuo viaggio costa il 40% in meno`, prezzoInEuro);
 
